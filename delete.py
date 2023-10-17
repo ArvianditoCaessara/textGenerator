@@ -1,29 +1,24 @@
-from transformers import TextDataset, DataCollatorForLanguageModeling
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from transformers import Trainer, TrainingArguments
-from transformers import PreTrainedTokenizerFast, GPT2TokenizerFast
+from fine_tune import load_model
 
-#Config
-model1_path = 'model/model_fulltext'
-model2_path = 'model/model_finetuned_qanda'
-tokenizer_path = 'model/model_fulltext'
-sequence1 = "[Q] When was the company founded?"
+# Config
+model_fulltext_path = 'model/model_fulltext' #The model that only trained with Full-Text
+model_qanda_path = 'model/model_finetuned_qanda' #The model after Q and A fine-tuned
+question = "[Q] When was the company founded?"
 max_len = 50
 
-
-
-# Functions
+# Load the pre-trained model (after full-test training)
 def load_model(model_path):
     model = GPT2LMHeadModel.from_pretrained(model_path)
     return model
 
-
+# Load the tokenizer
 def load_tokenizer(tokenizer_path):
     tokenizer = GPT2Tokenizer.from_pretrained(tokenizer_path)
     return tokenizer
 
+# Generate the text
 def generate_text(model_path, tokenizer_path, sequence, max_length):
-    
     model = load_model(model_path)
     tokenizer = load_tokenizer(tokenizer_path)
     ids = tokenizer.encode(f'{sequence}', return_tensors='pt')
@@ -38,5 +33,4 @@ def generate_text(model_path, tokenizer_path, sequence, max_length):
     print(tokenizer.decode(final_outputs[0], skip_special_tokens=True))
 
 
-
-generate_text(model1_path, tokenizer_path, sequence1, max_len) 
+generate_text(model_fulltext_path, model_fulltext_path, question, max_len) 
