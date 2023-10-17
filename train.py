@@ -61,6 +61,7 @@ def train(train_file_path,model_name,
       
     trainer.train()
     trainer.save_model()
+    return trainer
 
 
 # Execute Training

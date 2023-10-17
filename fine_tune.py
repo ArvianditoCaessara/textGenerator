@@ -17,6 +17,11 @@ def load_model(model_path):
     model = GPT2LMHeadModel.from_pretrained(model_path)
     return model
 
+# Load the tokenizer
+def load_tokenizer(tokenizer_path):
+    tokenizer = GPT2Tokenizer.from_pretrained(tokenizer_path)
+    return tokenizer
+
 
 # Fine Tune Function
 def fine_tune(finetune_file_path,model_name,
@@ -27,6 +32,7 @@ def fine_tune(finetune_file_path,model_name,
               num_train_epochs,
               save_steps):
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    #tokenizer = load_tokenizer(model_path)
     train_dataset = load_dataset(finetune_file_path, tokenizer)
     data_collator = load_data_collator(tokenizer)
 
