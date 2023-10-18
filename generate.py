@@ -40,7 +40,7 @@ def generate_text(model_path, sequence, max_length):
     
     
     lines = result.split('\n')  # Split the input string into lines
-    filtered_lines = [line for line in lines if line.startswith("[Q]") or line.startswith("[A]")][:-1]
+    filtered_lines = [line for line in lines if line.startswith("[Q]") or line.startswith("[A]")]
 
     result = '\n'.join(filtered_lines)  # Join the filtered lines back together
     print(result)
