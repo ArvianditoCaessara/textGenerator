@@ -8,7 +8,7 @@ model1_path = 'model/model_fulltext'
 model2_path = 'model/model_finetuned_qanda'
 tokenizer_path = 'model/model_fulltext'
 #sequence1 = "[Q] When is the company founded?"
-max_len = 35
+max_len = 45
 
 user_input = input("Enter question: ")
 sequence1 = "[Q] " + user_input
@@ -40,7 +40,7 @@ def generate_text(model_path, sequence, max_length):
     
     
     lines = result.split('\n')  # Split the input string into lines
-    filtered_lines = [line for line in lines if line.startswith("[Q]") or line.startswith("[A]")]
+    filtered_lines = [line for line in lines if line.startswith("[Q]") or line.startswith("[A]")][:-1]
 
     result = '\n'.join(filtered_lines)  # Join the filtered lines back together
     print(result)
