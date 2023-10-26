@@ -1,17 +1,13 @@
-from transformers import TextDataset, DataCollatorForLanguageModeling
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from transformers import Trainer, TrainingArguments
-from transformers import PreTrainedTokenizerFast, GPT2TokenizerFast
 
 #Config
 model1_path = 'model/model_fulltext'
 model2_path = 'model/model_finetuned_qanda'
 tokenizer_path = 'model/model_fulltext'
-#sequence1 = "[Q] When is the company founded?"
-max_len = 45
+max_len = 50
 
 user_input = input("Enter question: ")
-sequence1 = "[Q] " + user_input
+sequence1 = "[Q]: " + user_input
 
 # Functions
 def load_model(model_path):
